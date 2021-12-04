@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang='en'> 
+<head>
+    <meta charset='UTF-8'>
+    <title> Health Insuarnce Risk Estimator </title>
+</head>
+
+<body style="background-color:red;"></body>
+<body>
+    <h1>Jake's Insurance Risk Assessment</h1>
+    <p>To the actuary using this program, this program will allow you to assess the risk of a new client given some information about their physical conditions.
+        The attributes in question are age, weight, height, blood pressure, and if there are  any known family diseases, please respond by submitting the answers in the drop boxes bellow and calculating the risk. 
+    </p>
+    
+    <label>Client's Age</label>
+
+    <select id='q1'>
+      <option value='0'>Younger than 30</option>
+      <option value='10'>30-45</option>
+      <option value='20'>45-60</option>
+      <option value='30'>60+</option>
+    </select>
+    <br /><br />
+
+    <label>Client's Weight (lbs)</label>
+
+    <select id='q2'>
+      <option value='100'>100</option>
+      <option value='110'>110</option>
+      <option value='120'>120</option>
+      <option value='130'>130</option>
+      <option value='140'>140</option>
+      <option value='150'>150</option>
+      <option value='160'>160</option>
+      <option value='170'>170</option>
+      <option value='180'>180</option>
+      <option value='190'>190</option>
+      <option value='200'>200</option>
+      <option value='210'>210</option>
+      <option value='220'>220</option>
+      <option value='230'>230</option>
+      <option value='240'>240</option>
+      <option value='250'>250</option>
+      <option value='260'>260</option>
+      <option value='270'>270</option>
+      <option value='280'>280</option>
+      <option value='290'>290</option>
+      <option value='300'>300</option>
+      <option value='310'>310</option>
+    </select>
+    <br /><br />
+
+    <label>Clients Height (in) </label>
+
+    <select id='q3'>
+      <option value='54'>54</option>
+      <option value='56'>56</option>
+      <option value='58'>58</option>
+      <option value='60'>60</option>
+      <option value='62'>62</option>
+      <option value='64'>64</option>
+      <option value='66'>66</option>
+      <option value='68'>68</option>
+      <option value='70'>70</option>
+      <option value='72'>72</option>
+      <option value='74'>74</option>
+      <option value='76'>76</option>
+      <option value='78'>78</option>
+      <option value='80'>80</option>
+      <option value='82'>82</option>
+      <option value='84'>84</option>
+    </select>
+    <br /><br />
+
+    <label>Blood Pressure state </label>
+
+    <select id='q4'>
+      <option value='0'>Normal</option>
+      <option value='15'>Elevated</option>
+      <option value='30'>Stage 1</option>
+      <option value='85'>Stage 2</option>
+      <option value='100'>Crisis</option>
+    </select>
+    <br /><br />
+
+    <label>Familial Diseases</label>
+
+    <select id='q5'>
+      <option value='10'>Diabetes</option>
+      <option value='10'>Cancer</option>
+      <option value='10'>Alzheimer's</option>
+      <option value='0'>None</option>
+  
+    </select>
+    <br /><br />
+
+    <br /><br /><br />
+    <button onclick='Calculate()'>Calculate risk</button>
+
+    
+
+    <p id='Compatibility'></p>
+    <br />
+
+    <p id='test' ></p>
+
+
+
+    
+
+<script>
+console.log('Starting Health Insurance Calculator.')
+
+
+function Calculate(){
+    console.log('Calculate()')
+
+    let bmi = ''
+    bmi = (document.getElementById('q2').selectedOptions[0].value / Math.pow(document.getElementById('q3').selectedOptions[0].value , 2)) * 703
+    console.log(bmi)
+
+    let bmiScore = ''
+    if (bmi< 24.9 )
+      bmiScore = 0
+    else if (25< bmi < 30)
+      bmiScore = 40
+    else 
+      bmiScore = 75
+
+    let RiskValue1 = document.getElementById('q1').selectedOptions[0].value;
+    let RiskValue2 = bmiScore;
+    let RiskValue3 = document.getElementById('q4').selectedOptions[0].value;
+    let RiskValue4 = document.getElementById('q5').selectedOptions[0].value;
+
+    let totalRisk = parseInt(RiskValue1) + parseInt(RiskValue2) + parseInt(RiskValue3) + parseInt(RiskValue4)
+    
+    
+    document.getElementById('Compatibility').innerHTML = 'Your clients risk level is at '+ totalRisk;
+
+    let test = ""
+    if (totalRisk > 75)
+      test = 'Dont Insure'
+    else if ( 50 <= totalRisk && totalRisk < 75 )
+      test = 'High Risk'
+    else if (20 <= totalRisk && totalRisk < 50)
+      test = 'Morderate Risk'
+    else
+      test = 'Low Risk'
+   
+
+
+    document.getElementById('test').innerHTML = test
+}
+</script>
+</body>
+</html>
